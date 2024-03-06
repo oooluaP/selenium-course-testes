@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developers portal!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-600">
+<nav class="flex-none h-12 flex p-4 bg-black items-center">
+    <a th:href="${(#mvc.url('HC#home')).build()}" class="font-medium text-white">f<span class="text-red-500">1</span>r<span class="text-red-500">st</span>
+    </a>
+</nav>
+
+<div class="max-w-md mx-auto mt-8">
+    <form action="#" th:action="@{/create-developer}" id="developer-form" method="POST" th:object="${developer}"
+          class="shadow-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+            <label class="block text-sm font-bold mb-2" for="username">
+                Username
+            </label>
+            <input class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
+                   id="username" type="text" placeholder="Username" name="username">
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-bold mb-2" for="email">
+                Email
+            </label>
+            <input
+                    class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
+                    id="email" type="email" placeholder="Email" name="email">
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-bold mb-2" for="password">
+                Password
+            </label>
+            <input
+                    class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
+                    id="password" type="password" placeholder="******" name="password">
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-bold mb-2" for="bio">
+                Bio
+            </label>
+            <textarea
+                    class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
+                    id="bio" placeholder="Tell us about yourself" name="bio"></textarea>
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-bold mb-2">
+                Careers you are interested in:
+            </label>
+            <div>
+                <input type="checkbox" id="frontend" name="careers" class="mr-2 leading-tight" value="FRONTEND">
+                <label for="frontend" class="mr-2">Frontend</label>
+                <input type="checkbox" id="backend" name="careers" class="mr-2 leading-tight" value="BACKEND">
+                <label for="backend" class="mr-2">Backend</label>
+                <input type="checkbox" id="devops" name="careers" class="mr-2 leading-tight" value="DEVOPS">
+                <label for="devops" class="mr-2">DevOps</label>
+                <input type="checkbox" id="other" name="careers" class="mr-2 leading-tight" value="OTHER">
+                <label for="other" class="mr-2">Others</label>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-bold mb-2">
+                Preferred programming language:
+            </label>
+            <div>
+                <input type="radio" id="preferred_language_javascript" name="preferredLanguage" value="JAVASCRIPT"
+                       class="mr-2 leading-tight">
+                <label for="preferred_language_javascript" class="mr-2">JavaScript</label>
+                <input type="radio" id="preferred_language_python" name="preferredLanguage" value="PYTHON"
+                       class="mr-2 leading-tight">
+                <label for="preferred_language_python" class="mr-2">Python</label>
+                <input type="radio" id="preferred_language_java" name="preferredLanguage" value="JAVA"
+                       class="mr-2 leading-tight">
+                <label for="preferred_language_java" class="mr-2">Java</label>
+            </div>
+        </div>
+        <div class="mb-6">
+            <button id="submit-button"
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-6"
+                    type="submit">
+                Sign Up
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

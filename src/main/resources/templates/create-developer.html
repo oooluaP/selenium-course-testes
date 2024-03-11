@@ -10,7 +10,8 @@
 
 <body class="bg-gray-600">
 <nav class="flex-none h-12 flex p-4 bg-black items-center">
-    <a th:href="${(#mvc.url('HC#home')).build()}" class="font-medium text-white">f<span class="text-red-500">1</span>r<span class="text-red-500">st</span>
+    <a th:href="${(#mvc.url('HC#home')).build()}" class="font-medium text-white">f<span
+            class="text-red-500">1</span>r<span class="text-red-500">st</span>
     </a>
 </nav>
 
@@ -47,6 +48,20 @@
             <textarea
                     class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
                     id="bio" placeholder="Tell us about yourself" name="bio"></textarea>
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-bold mb-2" for="bio">
+                T-Shirt
+            </label>
+            <select id="tShirt" name="tShirt">
+                <option id="PP" value="PP">PP</option>
+                <option id="P" value="P">P</option>
+                <option id="M" value="M">M</option>
+                <option id="G" value="G">G</option>
+                <option id="GG" value="GG">GG</option>
+                <option id="XG" value="XG">XG</option>
+            </select>
+
         </div>
         <div class="mb-4">
             <label class="block text-sm font-bold mb-2">

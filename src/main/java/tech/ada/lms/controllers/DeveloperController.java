@@ -49,6 +49,7 @@ public class DeveloperController {
         private final String bio;
         private final List<String> careers;
         private final String preferredLanguage;
+        private final String tShirt;
 
         public Developer(
                 String username,
@@ -56,7 +57,8 @@ public class DeveloperController {
                 String password,
                 String bio,
                 List<String> careers,
-                String preferredLanguage
+                String preferredLanguage,
+                String tShirt
         ) {
             this.username = username;
             this.email = email;
@@ -64,6 +66,7 @@ public class DeveloperController {
             this.bio = bio;
             this.careers = careers;
             this.preferredLanguage = preferredLanguage;
+            this.tShirt = tShirt;
         }
 
         public String username() {
@@ -90,6 +93,10 @@ public class DeveloperController {
             return preferredLanguage;
         }
 
+        public String tShirt() {
+            return tShirt;
+        }
+
         @Override
         public boolean equals(Object obj) {
             if (obj == this) return true;
@@ -100,12 +107,13 @@ public class DeveloperController {
                     Objects.equals(this.password, that.password) &&
                     Objects.equals(this.bio, that.bio) &&
                     Objects.equals(this.careers, that.careers) &&
-                    Objects.equals(this.preferredLanguage, that.preferredLanguage);
+                    Objects.equals(this.preferredLanguage, that.preferredLanguage) &&
+                    Objects.equals(this.tShirt, that.tShirt);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(username, email, password, bio, careers, preferredLanguage);
+            return Objects.hash(username, email, password, bio, careers, preferredLanguage, tShirt);
         }
 
         @Override
@@ -116,7 +124,8 @@ public class DeveloperController {
                     "password=" + password + ", " +
                     "bio=" + bio + ", " +
                     "careers=" + careers + ", " +
-                    "preferredLanguage=" + preferredLanguage + ']';
+                    "preferredLanguage=" + preferredLanguage + ", " +
+                    "tShirt=" + tShirt + ']';
         }
 
     }

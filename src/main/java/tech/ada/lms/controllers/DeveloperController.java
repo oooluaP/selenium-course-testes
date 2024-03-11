@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class DeveloperController {
@@ -34,13 +36,88 @@ public class DeveloperController {
         return "redirect:/list-developers";
     }
 
-    public record Developer(
-            String username,
-            String email,
-            String password,
-            String bio,
-            List<String> careers,
-            String preferredLanguage
-    ) {
+    @GetMapping("/delete-developer/{username}")
+    public String deleteDeveloper(@PathVariable("username") String username) {
+        DEVELOPERS_LIST.removeIf(dev -> dev.username.equals(username));
+        return "list-developers";
+    }
+
+    public static final class Developer {
+        private final String username;
+        private final String email;
+        private final String password;
+        private final String bio;
+        private final List<String> careers;
+        private final String preferredLanguage;
+
+        public Developer(
+                String username,
+                String email,
+                String password,
+                String bio,
+                List<String> careers,
+                String preferredLanguage
+        ) {
+            this.username = username;
+            this.email = email;
+            this.password = password;
+            this.bio = bio;
+            this.careers = careers;
+            this.preferredLanguage = preferredLanguage;
+        }
+
+        public String username() {
+            return username;
+        }
+
+        public String email() {
+            return email;
+        }
+
+        public String password() {
+            return password;
+        }
+
+        public String bio() {
+            return bio;
+        }
+
+        public List<String> careers() {
+            return careers;
+        }
+
+        public String preferredLanguage() {
+            return preferredLanguage;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) return true;
+            if (obj == null || obj.getClass() != this.getClass()) return false;
+            var that = (Developer) obj;
+            return Objects.equals(this.username, that.username) &&
+                    Objects.equals(this.email, that.email) &&
+                    Objects.equals(this.password, that.password) &&
+                    Objects.equals(this.bio, that.bio) &&
+                    Objects.equals(this.careers, that.careers) &&
+                    Objects.equals(this.preferredLanguage, that.preferredLanguage);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(username, email, password, bio, careers, preferredLanguage);
+        }
+
+        @Override
+        public String toString() {
+            return "Developer[" +
+                    "username=" + username + ", " +
+                    "email=" + email + ", " +
+                    "password=" + password + ", " +
+                    "bio=" + bio + ", " +
+                    "careers=" + careers + ", " +
+                    "preferredLanguage=" + preferredLanguage + ']';
+        }
+
     }
 }

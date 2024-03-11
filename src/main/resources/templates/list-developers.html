@@ -49,6 +49,9 @@
                 <th scope="col" class="px-6 py-3">
                     Preferred Language
                 </th>
+                <th scope="col" colspan="px-6 py-3">
+                    Actions
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -57,6 +60,10 @@
                 <th scope="col" class="px-6 py-3" th:text="${dev.email}"></th>
                 <th scope="col" class="px-6 py-3" th:text="${dev.careers}"></th>
                 <th scope="col" class="px-6 py-3" th:text="${dev.preferredLanguage}"></th>
+                <th scope="col" class="px-6 py-3">
+                    <a th:href="@{'/delete-developer/' + ${dev.username}}"
+                       th:id="@{'delete-' + ${dev.username}}">Delete</a>
+                </th>
             </tr>
             </tbody>
         </table>

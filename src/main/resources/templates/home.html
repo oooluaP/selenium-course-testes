@@ -1,4 +1,4 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -9,9 +9,19 @@
 </head>
 
 <body class="bg-gray-600">
-<nav class="flex-none h-12 flex p-4 bg-black items-center">
-    <a th:href="${(#mvc.url('HC#home')).build()}" class="font-medium text-white">f<span class="text-red-500">1</span>r<span class="text-red-500">st</span>
+<nav class="h-12 flex p-4 bg-black w-full items-center flex-row">
+    <a th:href="${(#mvc.url('HC#home')).build()}" class="font-medium text-white">f<span
+            class="text-red-500">1</span>r<span class="text-red-500">st</span>
     </a>
+
+    <div class="float-right flex align-center">
+        <a class="mx-4 float-right text-blue-500 text-xs cursor-pointer" onclick="onClickSupport(event)">
+            Support
+        </a>
+        <a class="mx-4 float-right text-red-500 text-xs cursor-pointer" onclick="onClickLogout(event)">
+            Logout
+        </a>
+    </div>
 </nav>
 
 <main class="flex flex-row p-6 gap-2">
@@ -25,13 +35,67 @@
     </a>
 
     <a th:href="${(#mvc.url('DC#listDevelopers')).build()}" class="max-w-md mt-8 flex flex-row">
-        <div class="w-200 h-200 bg-black p-4 rounded cursor-pointer hover:bg-gray-900">
+        <div class="w-100 h-400 bg-black p-4 rounded cursor-pointer hover:bg-gray-900">
             <p class="text-white">
                 Listar developer
             </p>
         </div>
     </a>
+
+    <a onclick="onClickCreateApplication()" class="max-w-md mt-8 flex flex-row">
+        <div class="w-100 h-400 bg-blue-500 p-4 rounded cursor-pointer hover:bg-blue-600">
+            <p class="text-white" id="create-application">
+                Criar aplicação
+            </p>
+        </div>
+    </a>
 </main>
+
+<script>
+    function onClickCreateApplication() {
+        alert("New feature in development. Please wait until next week!");
+    }
+
+    function onClickSupport(event) {
+        event.preventDefault();
+        var message = prompt("What is your issue?")
+        fetch("/api/tickets", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "same-origin",
+            body: JSON.stringify({
+                message
+            })
+        }).then(response => response.json())
+            .then(json => {
+                if (json.success) {
+                    alert("Your ticket was created!");
+                } else {
+                    alert("Your ticket was not created!");
+                }
+            }).catch(err => alert("Was not possible to create your ticket!"));
+    }
+
+    function onClickLogout(event) {
+        event.preventDefault();
+        const answer = confirm("Do you want logout?");
+        if (answer) {
+
+            fetch("/logout", {
+                method: "POST",
+                credentials: "same-origin"
+            }).then(response => {
+                window.location.href = "http://localhost:8080/login";
+            })
+            .catch(err => alert("Error on logout"));
+
+        } else {
+            console.log("Are you testing my patient?");
+        }
+    }
+</script>
 </body>
 
 </html>

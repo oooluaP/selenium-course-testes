@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Developers f1rst - Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="w-screen h-screen bg-gray-600">
+<div class="flex flex-col w-full h-full">
+
+    <nav class="flex-none h-12 flex p-4 bg-black items-center">
+        <a th:href="${(#mvc.url('HC#home')).build()}" class="font-medium text-white">f<span
+                class="text-red-500">1</span>r<span class="text-red-500">st</span>
+        </a>
+    </nav>
+
+    <main class="flex flex-1 flex-col items-center justify-center">
+        <div>
+            <p class="text-white text-lg">Registered with success!</p>
+            <div class="text-center">
+                <a th:href="@{/login}" class="text-sm text-blue-300 cursor-pointer hover:text-blue-200">Back to login</a>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

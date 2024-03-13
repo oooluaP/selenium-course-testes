@@ -18,21 +18,40 @@
 
     <main class="flex flex-1 flex-col items-center justify-center">
         <div
-                class="flex flex-col items-center justify-center p-4 rounded-lg shadow-lg shadow-gray-700">
+                class="max-w-md mx-auto mt-8">
             <form action="#" th:action="@{/authenticate}" method="POST"
-                  class="flex flex-col gap-2 p-2 h-full w-full items-center justify-center">
-                <input id="username"
-                       name="username"
-                       class="bg-gray-800 rounded-sm p-2 text-white text-center focus:outline-none focus-visible:outline-none"
-                       type="text" placeholder="Username"/>
-                <input
-                        id="password"
-                        name="password"
-                        class="bg-gray-800 rounded-sm p-2 text-white text-center border-gray-800 focus:outline-none focus-visible:outline-none"
-                        type="password" placeholder="Password"/>
+                  class="shadow-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4  w-80">
+                <div class="mb-4 w-full">
+                    <label class="block text-sm font-bold mb-2 text-white" for="username">
+                        First name
+                    </label>
+                    <input id="username"
+                           name="username"
+                           class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
+                           type="text" placeholder="Username"/>
+                </div>
+                <div class="mb-4 w-full">
+                    <label class="block text-sm font-bold mb-2 text-white" for="password">
+                        Password
+                    </label>
+                    <input
+                            id="password"
+                            name="password"
+                            class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
+                            type="password" placeholder="Password"/>
+                    <span th:if="${param.error}"
+                          class="text-rose-500 text-sm w-full">
+                    Invalid username or password
+                </span>
+                </div>
                 <button class="bg-red-600 rounded-sm p-2 text-white text-center w-full hover:bg-red-700" type="submit">
                     Submit
                 </button>
+                <div class="text-center mt-4">
+                    <p class="text-sm text-white">There is no account?</p>
+                    <a class="text-sm text-blue-300 cursor-pointer hover:text-blue-400" th:href="@{/register}">Register
+                        here</a>
+                </div>
             </form>
         </div>
     </main>

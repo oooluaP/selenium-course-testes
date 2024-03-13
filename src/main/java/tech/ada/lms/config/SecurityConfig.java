@@ -25,7 +25,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(configurer -> configurer.anyRequest().authenticated()).formLogin(
+        httpSecurity.authorizeHttpRequests(configurer ->
+                configurer
+                        .antMatchers("/register", "/register-successfully").permitAll()
+                        .anyRequest().authenticated()).formLogin(
                 form -> form.loginPage("/login")
                         .loginProcessingUrl("/authenticate")
                         .permitAll()

@@ -28,9 +28,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        DelegatingServerLogoutHandler logoutHandler = new DelegatingServerLogoutHandler(
-                new WebSessionServerLogoutHandler(), new SecurityContextServerLogoutHandler()
-        );
         httpSecurity.authorizeHttpRequests(configurer ->
                         configurer
                                 .antMatchers("/register", "/register-successfully").permitAll()

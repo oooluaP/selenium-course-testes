@@ -7,9 +7,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.server.authentication.logout.DelegatingServerLogoutHandler;
-import org.springframework.security.web.server.authentication.logout.SecurityContextServerLogoutHandler;
-import org.springframework.security.web.server.authentication.logout.WebSessionServerLogoutHandler;
 
 @Configuration
 public class SecurityConfig {
@@ -38,10 +35,7 @@ public class SecurityConfig {
                                 .loginProcessingUrl("/authenticate")
                                 .permitAll()
                 )
-                .logout()
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .and()
+                .logout(logout -> logout.logoutSuccessUrl("/login").permitAll().invalidateHttpSession(true).deleteCookies("JSESSIONID"))
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.ignoringAntMatchers("/api/**", "/logout"));
         return httpSecurity.build();
     }

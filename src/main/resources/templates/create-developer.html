@@ -22,38 +22,53 @@
             <label class="text-white block text-sm font-bold mb-2" for="username">
                 Username
             </label>
-            <input class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
-                   id="username" type="text" placeholder="Username" name="username">
+            <input
+                    th:field="*{username}"
+                    class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
+                    id="username" type="text" placeholder="Username">
+            <span class="text-rose-500 text-sm w-full" th:if="${#fields.hasErrors('username')}"
+                  th:errors="*{username}"></span>
         </div>
         <div class="mb-4">
             <label class="text-white block text-sm font-bold mb-2" for="email">
                 Email
             </label>
             <input
+                    th:field="*{email}"
                     class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
                     id="email" type="email" placeholder="Email" name="email">
+            <span class="text-rose-500 text-sm w-full" th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}"></span>
         </div>
         <div class="mb-4">
             <label class="text-white  block text-sm font-bold mb-2" for="password">
                 Password
             </label>
             <input
+                    th:field="*{password}"
                     class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
                     id="password" type="password" placeholder="******" name="password">
+            <span class="text-rose-500 text-sm w-full" th:if="${#fields.hasErrors('password')}"
+                  th:errors="*{password}"></span>
         </div>
         <div class="mb-4">
             <label class="text-white block text-sm font-bold mb-2" for="bio">
                 Bio
             </label>
             <textarea
+                    th:field="*{bio}"
                     class="bg-gray-800 rounded-sm p-2 text-white focus:outline-none focus-visible:outline-none w-full"
                     id="bio" placeholder="Tell us about yourself" name="bio"></textarea>
+            <span class="text-rose-500 text-sm w-full" th:if="${#fields.hasErrors('bio')}"
+                  th:errors="*{bio}"></span>
         </div>
         <div class="mb-4">
             <label class="text-white block text-sm font-bold mb-2" for="bio">
                 T-Shirt
             </label>
-            <select id="tShirt" name="tShirt" class="w-full">
+            <select th:field="*{tShirt}"
+                    id="tShirt" name="tShirt" class="w-full">
+                <option disabled selected value="">Select a T-SHIRT</option>
                 <option id="PP" value="PP">PP</option>
                 <option id="P" value="P">P</option>
                 <option id="M" value="M">M</option>
@@ -61,22 +76,29 @@
                 <option id="GG" value="GG">GG</option>
                 <option id="XG" value="XG">XG</option>
             </select>
-
+            <span class="text-rose-500 text-sm w-full" th:if="${#fields.hasErrors('tShirt')}"
+                  th:errors="*{tShirt}"></span>
         </div>
         <div class="mb-4">
             <label class="text-white block text-sm font-bold mb-2">
                 Careers you are interested in:
             </label>
             <div>
-                <input type="checkbox" id="frontend" name="careers" class="mr-2 leading-tight" value="FRONTEND">
+                <input th:field="*{careers}" type="checkbox" id="frontend" name="careers" class="mr-2 leading-tight"
+                       th:value="FRONTEND">
                 <label for="frontend" class="text-white mr-2">Frontend</label>
-                <input type="checkbox" id="backend" name="careers" class="mr-2 leading-tight" value="BACKEND">
+                <input th:field="*{careers}" type="checkbox" id="backend" name="careers" class="mr-2 leading-tight"
+                       th:value="BACKEND">
                 <label for="backend" class="text-white mr-2">Backend</label>
-                <input type="checkbox" id="devops" name="careers" class="mr-2 leading-tight" value="DEVOPS">
+                <input th:field="*{careers}" type="checkbox" id="devops" name="careers" class="mr-2 leading-tight"
+                       th:value="DEVOPS">
                 <label for="devops" class="text-white mr-2">DevOps</label>
-                <input type="checkbox" id="other" name="careers" class="mr-2 leading-tight" value="OTHER">
+                <input th:field="*{careers}" type="checkbox" id="other" name="careers" class="mr-2 leading-tight"
+                       th:value="OTHER">
                 <label for="other" class="text-white mr-2">Others</label>
             </div>
+            <span class="text-rose-500 text-sm w-full" th:if="${#fields.hasErrors('careers')}"
+                  th:errors="*{careers}"></span>
         </div>
         <div class="mb-4">
             <label class="text-white block text-sm font-bold mb-2">
@@ -93,6 +115,8 @@
                        class="mr-2 leading-tight">
                 <label for="preferred_language_java" class="text-white mr-2">Java</label>
             </div>
+            <span class="text-rose-500 text-sm w-full" th:if="${#fields.hasErrors('preferredLanguage')}"
+                  th:errors="*{preferredLanguage}"></span>
         </div>
         <div class="mb-6">
             <button id="submit-button"

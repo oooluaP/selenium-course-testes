@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+
+
+<form action="{uri:Login.login()}" method="POST" class="flex flex-col gap-4 p-6 bg-white rounded shadow-md">
+    {#authenticityToken/}
+    <div>
+        <label for="username" class="block mb-2 text-sm font-medium">Password</label>
+        <input type="text" id="username"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+               name="username"/>
+    </div>
+
+    <div>
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+        <input type="password" id="password"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+               name="password"/>
+    </div>
+
+    {#if flash:loginError}
+    <div class="text-red-600 text-sm text-center">
+        {flash:loginError}
+    </div>
+    {/if}
+
+    <button type="submit"
+            class="cursor-pointer focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+        Submit
+    </button>
+</form>
+</body>
+</html>

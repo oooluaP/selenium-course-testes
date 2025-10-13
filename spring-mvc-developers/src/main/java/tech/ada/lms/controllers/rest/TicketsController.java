@@ -18,7 +18,7 @@ import java.util.Map;
 @CrossOrigin("*")
 public class TicketsController {
 
-    private static List<String> TICKETS = new ArrayList<>();
+    private static final List<String> TICKETS = new ArrayList<>();
 
     @PostMapping
     public ResponseEntity<Map<Object, Object>> createTicket(@RequestBody Map<String, String> request) {

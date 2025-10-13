@@ -1,10 +1,11 @@
-package tech.ada.lms.dto;
+package tech.ada.lms.model;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class User {
+
     @Size(min = 2, message = "First name must be at least 3 characters long")
     private String firstName;
     @Size(min = 2, message = "Last name must be at least 3 characters long")

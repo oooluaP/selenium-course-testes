@@ -24,7 +24,8 @@ public class TicketsController {
     public ResponseEntity<Map<Object, Object>> createTicket(@RequestBody Map<String, String> request) {
         String message = request.get("message");
         TICKETS.add(message);
-        return ResponseEntity.status(HttpStatus.CREATED).header(HttpHeaders.LOCATION, "/api/tickets/" + TICKETS.size()).body(Map.of("message", message, "success", true));
+        return ResponseEntity.status(HttpStatus.CREATED).header(HttpHeaders.LOCATION, "/api/tickets/" + TICKETS.size())
+                .body(Map.of("message", message, "success", true));
     }
 
 }

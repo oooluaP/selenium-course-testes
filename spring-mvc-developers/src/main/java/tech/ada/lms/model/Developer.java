@@ -33,15 +33,8 @@ public class Developer {
     public Developer() {
     }
 
-    public Developer(
-            String username,
-            String email,
-            String password,
-            String bio,
-            List<String> careers,
-            String preferredLanguage,
-            String tShirt
-    ) {
+    public Developer(String username, String email, String password, String bio, List<String> careers,
+            String preferredLanguage, String tShirt) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -109,16 +102,16 @@ public class Developer {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
+        if (obj == this)
+            return true;
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
         var that = (Developer) obj;
-        return Objects.equals(this.username, that.username) &&
-                Objects.equals(this.email, that.email) &&
-                Objects.equals(this.password, that.password) &&
-                Objects.equals(this.bio, that.bio) &&
-                Objects.equals(this.careers, that.careers) &&
-                Objects.equals(this.preferredLanguage, that.preferredLanguage) &&
-                Objects.equals(this.tShirt, that.tShirt);
+        return Objects.equals(this.username, that.username) && Objects.equals(this.email, that.email)
+                && Objects.equals(this.password, that.password) && Objects.equals(this.bio, that.bio)
+                && Objects.equals(this.careers, that.careers)
+                && Objects.equals(this.preferredLanguage, that.preferredLanguage)
+                && Objects.equals(this.tShirt, that.tShirt);
     }
 
     @Override
@@ -128,14 +121,9 @@ public class Developer {
 
     @Override
     public String toString() {
-        return "Developer[" +
-                "username=" + username + ", " +
-                "email=" + email + ", " +
-                "password=" + password + ", " +
-                "bio=" + bio + ", " +
-                "careers=" + careers + ", " +
-                "preferredLanguage=" + preferredLanguage + ", " +
-                "tShirt=" + tShirt + ']';
+        return "Developer[" + "username=" + username + ", " + "email=" + email + ", " + "password=" + password + ", "
+                + "bio=" + bio + ", " + "careers=" + careers + ", " + "preferredLanguage=" + preferredLanguage + ", "
+                + "tShirt=" + tShirt + ']';
     }
 
 }

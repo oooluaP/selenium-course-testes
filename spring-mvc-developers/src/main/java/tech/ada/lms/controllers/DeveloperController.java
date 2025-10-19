@@ -15,16 +15,13 @@ import java.util.List;
 @Controller
 public class DeveloperController {
 
-
     private static final List<Developer> DEVELOPERS_LIST = new ArrayList<>();
 
     @GetMapping("/create-developer")
     public String createDeveloper(Model model) {
-        model.addAttribute("developer",
-                new Developer());
+        model.addAttribute("developer", new Developer());
         return "create-developer";
     }
-
 
     @GetMapping("/list-developers")
     public String listDevelopers(Model model) {

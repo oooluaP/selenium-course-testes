@@ -11,32 +11,23 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password("{noop}123456")
-                .roles("ADMIN")
-                .build();
+        UserDetails admin = User.builder().username("admin").password("{noop}123456").roles("ADMIN").build();
 
         return new InMemoryUserDetailsManager(admin);
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(configurer ->
-                        configurer
-                                .antMatchers("/register", "/register-successfully").permitAll()
-                                .antMatchers("/api/**").authenticated()
-                                .anyRequest().authenticated())
-                .formLogin(
-                        form -> form.loginPage("/login")
-                                .loginProcessingUrl("/authenticate")
-                                .permitAll()
-                )
-                .logout(logout -> logout.logoutSuccessUrl("/login").permitAll().invalidateHttpSession(true).deleteCookies("JSESSIONID"))
-                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.ignoringAntMatchers("/api/**", "/logout"));
+        httpSecurity
+                .authorizeHttpRequests(configurer -> configurer.antMatchers("/register", "/register-successfully")
+                        .permitAll().antMatchers("/api/**").authenticated().anyRequest().authenticated())
+                .formLogin(form -> form.loginPage("/login").loginProcessingUrl("/authenticate").permitAll())
+                .logout(logout -> logout.logoutSuccessUrl("/login").permitAll().invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID"))
+                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.ignoringAntMatchers("/api/**",
+                        "/logout"));
         return httpSecurity.build();
     }
 }

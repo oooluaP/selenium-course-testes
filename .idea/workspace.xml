@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e9996c6-7baf-442b-b6c7-5c96ba3c3ad9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-mvc-developers/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/spring-mvc-developers/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-mvc-developers/src/main/java/tech/ada/lms/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-mvc-developers/src/main/java/tech/ada/lms/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-mvc-developers/terraform/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/spring-mvc-developers/terraform/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-pyramid-selenium/src/test/java/tech/ada/GooglePageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test-pyramid-selenium/src/test/java/tech/ada/AdaDevelopersLoginPageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-mvc-developers/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-mvc-developers/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-pyramid-selenium/src/test/java/tech/ada/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/test-pyramid-selenium/src/test/java/tech/ada/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-pyramid-selenium/src/test/java/tech/ada/DevelopersRegisterPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test-pyramid-selenium/src/test/java/tech/ada/DevelopersRegisterPageTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +37,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.DevelopersRegisterPageTest.deveCadastrarCorretamente.executor": "Run",
+    "JUnit.DevelopersRegisterPageTest.deveMostrarErroQuandoDadosDoFormularioForemInvalidos.executor": "Run",
+    "JUnit.DevelopersRegisterPageTest.naoDeveCadastrarUsuarioQueJaExiste.executor": "Run",
     "JUnit.GooglePageTest.testaTituloDoGoogle.executor": "Run",
+    "Maven.developers [spring-boot:run].executor": "Run",
+    "Maven.developers [spring-boot:start].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -48,10 +50,16 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/cruz/ada/selenium/spring-mvc-developers/test-pyramid-selenium"
+    "last_opened_file_path": "/home/cruz/ada/selenium/selenium-course"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn spring-boot:start" />
+      <command value="mvn spring-boot:run" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.DevelopersRegisterPageTest.naoDeveCadastrarUsuarioQueJaExiste">
     <configuration name="AdaDevelopersLoginPageTest.testaTituloDoGoogle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="test-pyramid-selenium" />
       <extension name="coverage">
@@ -68,8 +76,59 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DevelopersRegisterPageTest.deveCadastrarCorretamente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-pyramid-selenium" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.ada.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tech.ada" />
+      <option name="MAIN_CLASS_NAME" value="tech.ada.DevelopersRegisterPageTest" />
+      <option name="METHOD_NAME" value="deveCadastrarCorretamente" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DevelopersRegisterPageTest.deveMostrarErroQuandoDadosDoFormularioForemInvalidos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-pyramid-selenium" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.ada.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tech.ada" />
+      <option name="MAIN_CLASS_NAME" value="tech.ada.DevelopersRegisterPageTest" />
+      <option name="METHOD_NAME" value="deveMostrarErroQuandoDadosDoFormularioForemInvalidos" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DevelopersRegisterPageTest.naoDeveCadastrarUsuarioQueJaExiste" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-pyramid-selenium" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.ada.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tech.ada" />
+      <option name="MAIN_CLASS_NAME" value="tech.ada.DevelopersRegisterPageTest" />
+      <option name="METHOD_NAME" value="naoDeveCadastrarUsuarioQueJaExiste" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DevelopersRegisterPageTest.naoDeveCadastrarUsuarioQueJaExiste" />
+        <item itemvalue="JUnit.DevelopersRegisterPageTest.deveMostrarErroQuandoDadosDoFormularioForemInvalidos" />
+        <item itemvalue="JUnit.DevelopersRegisterPageTest.deveCadastrarCorretamente" />
         <item itemvalue="JUnit.AdaDevelopersLoginPageTest.testaTituloDoGoogle" />
       </list>
     </recent_temporary>

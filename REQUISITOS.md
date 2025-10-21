@@ -28,3 +28,12 @@ Ao entrar na página de cadastro o usuário pode preencher o formulário de cada
 4. O campo `Username` deve ter no mínimo 2 caracteres.
 5. O campo `Password` deve ter no mínimo 8 caracteres e não pode ficar em branco.
 6. Ao submeter o formulário de cadastro com dados inválidos, o usuário deve visualizar mensagens de erro correspondentes a cada campo inválido.
+
+## REQ006 (Cadastro de um usuário que já existe)
+
+Ao cadastrar um usuário no sistema que já existe, não deve redirecionar para a página de cadastrado com sucesso, deve aparecer uma mensagem `That username is taken. Try another.`.
+
+### REQ007 (Login)
+
+Ao realizar login com credenciais erradas, deve aparecer uma mensagem de erro na tela e não deve permitir o usuário acessar a aplicação.
+

@@ -35,6 +35,7 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
+
         this.userManager.createUser(org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername()).password("{noop}" + user.getPassword()).roles("USER").build());
         return "register-successfully";

@@ -5,7 +5,7 @@ variable "app_name" {
 
 variable "app_version" {
   type    = string
-  default = "0.3.0"
+  default = "0.4.0"
 }
 
 variable "region" {

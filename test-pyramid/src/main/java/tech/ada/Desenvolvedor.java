@@ -1,4 +1,4 @@
-package dev.matheuscruz.unitcase;
+package tech.ada;
 
 import java.util.ArrayList;
 import java.util.List;

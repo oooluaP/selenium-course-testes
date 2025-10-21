@@ -114,7 +114,7 @@ public class DevelopersRegisterPageTest {
 
         button.click();
 
-        // a mensagem de sucesso n]ao deve aparecer
+        // a mensagem de sucesso não deve aparecer
         Assertions.assertThrows(org.openqa.selenium.NoSuchElementException.class, () -> {
             webDriver.findElement(By.cssSelector(".text-white.text-lg"));
         });

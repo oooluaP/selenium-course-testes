@@ -36,7 +36,7 @@ public class DeverealizarlogincorretamenteTest {
         // Test name: Deve realizar login corretamente
         // Step # | name | target | value
         // 1 | open | /login |
-        driver.get("http://localhost:8080/login");
+        driver.get(Constants.BASE_URL + "/login");
         // 2 | setWindowSize | 602x1009 |
         driver.manage().window().setSize(new Dimension(602, 1009));
         // 3 | click | id=username |

@@ -31,7 +31,7 @@ public class Quandooformulriodecadastroestivervlidodevecadastrarousuriocorretame
 
         UUID uuid = UUID.randomUUID();
         System.out.println(uuid);
-        driver.get("http://localhost:8080/login");
+        driver.get(Constants.BASE_URL + "/login");
         driver.manage().window().setSize(new Dimension(1299, 1095));
         driver.findElement(By.cssSelector(".flex-1")).click();
         driver.findElement(By.cssSelector(".text-blue-300")).click();

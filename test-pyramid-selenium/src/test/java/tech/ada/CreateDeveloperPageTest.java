@@ -1,15 +1,34 @@
 package tech.ada;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class CreateDeveloperPageTest {
 
-    WebDriver webDriver = new ChromeDriver();
+    static WebDriver webDriver = new ChromeDriver();
+
+    @AfterAll
+    static void depoisDeTodos() {
+        webDriver.quit();
+    }
+
+    @AfterEach
+    void vaParaPaginaPrincipal() {
+        webDriver.get(Constants.BASE_URL);
+    }
 
     void realizarLoginComoAdmin() {
         webDriver.get(Constants.BASE_URL + "/login");
@@ -25,7 +44,33 @@ public class CreateDeveloperPageTest {
     }
 
     @Test
-    void deveCadastrarUmDesenvolvedor() throws InterruptedException {
+    void deveRealizarOLogoutCorretamente() {
+        realizarLoginComoAdmin();
+
+        WebElement linkLogout = webDriver.findElement(By.linkText("Logout"));
+        linkLogout.click();
+
+        Alert alert = webDriver.switchTo().alert();
+        String textoDoAlerta = alert.getText();
+        System.out.println("O texto do alerta é: " + textoDoAlerta);
+        alert.accept();
+    }
+
+
+    @Test
+    void naoDeveRealizarOLogoutQuandoOUsuarioClicarEmCancel() {
+        realizarLoginComoAdmin();
+
+        WebElement linkLogout = webDriver.findElement(By.linkText("Logout"));
+        linkLogout.click();
+
+        Alert alert = webDriver.switchTo().alert();
+        alert.dismiss();
+
+    }
+
+    @Test
+    void deveCadastrarUmDesenvolvedor() {
 
         realizarLoginComoAdmin();
 
@@ -60,7 +105,7 @@ public class CreateDeveloperPageTest {
         //            </select>
         selectTShirt.selectByIndex(4); // Estou selecionando o índice 4, ou seja G.
         // Começa sempre no 0
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
         // Seleciona o GG
         // Seleciona pelo valor do atributo html value
@@ -68,7 +113,7 @@ public class CreateDeveloperPageTest {
         selectTShirt.selectByValue("GG");
 
         // dorme 5 segundos
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
 
         // Seleciona o XG
         // Seleciona pelo texto visível
@@ -81,8 +126,82 @@ public class CreateDeveloperPageTest {
             // o requisito pode falar: Tem que ter os tamanhos...
         }
 
+        WebElement backend = webDriver.findElement(By.id("backend"));
+        backend.click();
 
+        WebElement other = webDriver.findElement(By.id("other"));
+        other.click();
+
+        WebElement radioJava = webDriver.findElement(By.id("preferred_language_java"));
+        radioJava.click();
+
+        WebElement addDeveloperButton = webDriver.findElement(By.id("submit-button"));
+        addDeveloperButton.click();
+
+
+        webDriver.get(Constants.BASE_URL + "/list-developers");
+        // 1. Clicaria em listar developers
+//By.cssSelector(".px-6.py-3") critério de busca
+        List<WebElement> elements = webDriver.findElements(By.cssSelector(".px-6.py-3"));
+
+        boolean encontrou = false;
+        for (WebElement element : elements) {
+            String text = element.getText();
+            encontrou = text.equals("marcos.suda");
+            if (encontrou) {
+                break;
+            }
+        }
+
+        Assertions.assertTrue(encontrou);
     }
 
+    @Test
+    void deveCadastrarUmProblemaCorretamente() throws InterruptedException {
+        realizarLoginComoAdmin();
+//        Thread.sleep(2000); // em homenagem ao Edi <3
+        WebElement linkSupport = webDriver.findElement(By.linkText("Support"));
+        linkSupport.click();
 
+        Alert alert = webDriver.switchTo().alert();
+        alert.sendKeys("Acabou o bolo na fábrica do Bruno!");
+        alert.accept();
+
+        // esperar até esse alerta aparecer, para que a gente não tenha NoAlertPresentException
+        WebDriverWait webDriverQueSabeEsperar = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        Alert ticketCriado = webDriverQueSabeEsperar.until(ExpectedConditions.alertIsPresent());
+
+        ticketCriado.accept();
+    }
+
+//    @Test
+//    void quandoClicarNoBotaoStartDeveAparecerOTextoHelloWorld() {
+//        webDriver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
+//
+//        WebElement startButton = webDriver.findElement(By.tagName("button"));
+//
+//        startButton.click();
+//
+//        Wait<WebDriver> webDriverQueEspera = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+//        WebElement element = webDriver.findElement(By.xpath("//*[@id=\"finish\"]/h4"));
+//
+//        WebElement helloWorld = webDriverQueEspera.until(ExpectedConditions.visibilityOf(element));
+//        Assertions.assertEquals("Hello World!", helloWorld.getText());
+//    }
+
+    @Test
+    void quandoClicarEmCriarAplicacaoDeveAparecerUmaMensagemNoAlerta() {
+        realizarLoginComoAdmin();
+
+        webDriver.findElement(By.id("create-application")).click();
+
+        Alert alert = webDriver.switchTo().alert();
+
+        String text = alert.getText();
+
+        Assertions.assertEquals("New feature in development. Please wait until next week!", text);
+
+        alert.accept();
+
+    }
 }

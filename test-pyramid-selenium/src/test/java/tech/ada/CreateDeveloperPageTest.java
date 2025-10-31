@@ -9,25 +9,36 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tech.ada.aula9.Developer;
+import tech.ada.aula9.HomePage;
+import tech.ada.aula9.PreferredLanguage;
+import tech.ada.aula9.RegisterPage;
 
 import java.time.Duration;
 import java.util.List;
 
 public class CreateDeveloperPageTest {
 
-    static WebDriver webDriver = new ChromeDriver();
+    static WebDriver webDriver;
+
+    static {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        webDriver = new ChromeDriver(options);
+    }
 
     @AfterAll
     static void depoisDeTodos() {
-        webDriver.quit();
+//        webDriver.quit();
     }
 
     @AfterEach
     void vaParaPaginaPrincipal() {
-        webDriver.get(Constants.BASE_URL);
+//        webDriver.get(Constants.BASE_URL);
     }
 
     void realizarLoginComoAdmin() {
@@ -43,16 +54,27 @@ public class CreateDeveloperPageTest {
         buttonLogin.click();
     }
 
+
+    @Test
+    void deveRealizarLogout() {
+        realizarLoginComoAdmin();
+
+        HomePage page = new HomePage(webDriver);
+
+        page.doLogout();
+    }
+
+
     @Test
     void deveRealizarOLogoutCorretamente() {
         realizarLoginComoAdmin();
 
         WebElement linkLogout = webDriver.findElement(By.linkText("Logout"));
+
         linkLogout.click();
 
         Alert alert = webDriver.switchTo().alert();
-        String textoDoAlerta = alert.getText();
-        System.out.println("O texto do alerta é: " + textoDoAlerta);
+
         alert.accept();
     }
 
@@ -66,6 +88,28 @@ public class CreateDeveloperPageTest {
 
         Alert alert = webDriver.switchTo().alert();
         alert.dismiss();
+
+    }
+
+    @Test
+    void deveCadastrarUmDev() {
+        realizarLoginComoAdmin();
+
+        webDriver.get(Constants.BASE_URL + "/create-developer");
+
+        RegisterPage registerPage = new RegisterPage(webDriver);
+
+        Developer developer = new Developer();
+        developer.setUsername("marcos.suda");
+        developer.setEmail("marcos@email.com");
+        developer.setPassword("marcos@123");
+        developer.setBio("Sou um tester/programador que ama Java e Javascript " +
+                "e GoLang e outras coisas e CSS e Javascript... e comprei um bolo na loja do " +
+                "Bruno e também um pé de moleque e dei pro Edilson!");
+        developer.settShirt("PP");
+        developer.setPreferredLanguage(PreferredLanguage.JS);
+
+        registerPage.createDeveloper(developer);
 
     }
 
@@ -202,6 +246,21 @@ public class CreateDeveloperPageTest {
         Assertions.assertEquals("New feature in development. Please wait until next week!", text);
 
         alert.accept();
+
+    }
+
+    @Test
+    void buscarElementDentroDeUmElemento() {
+
+        realizarLoginComoAdmin();
+
+        webDriver.get(Constants.BASE_URL + "/create-developer");
+
+        WebElement divEmail = webDriver.findElement(By.xpath("//*[@id='developer-form']/div[2]"));
+
+        WebElement username = divEmail.findElement(By.tagName("input"));
+
+        username.sendKeys("hello world!");
 
     }
 }

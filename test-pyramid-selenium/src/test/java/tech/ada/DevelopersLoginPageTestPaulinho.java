@@ -4,9 +4,18 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DevelopersLoginPageTestPaulinho {
 
@@ -39,7 +48,7 @@ public class DevelopersLoginPageTestPaulinho {
         WebElement nododocumentohtml = wdNavegador.findElement(By.linkText(textodolinkparacadastro));
         boolean estaVisivel = nododocumentohtml.isDisplayed();
 
-        Assertions.assertTrue(estaVisivel);
+        assertTrue(estaVisivel);
 
     }
 
@@ -58,6 +67,35 @@ public class DevelopersLoginPageTestPaulinho {
 
         Assertions.assertEquals(tituloDaPaginaDeCadastro, titulo);
     }
+
+
+    //REQ007 (Login)
+    //Ao realizar login com credenciais erradas, deve aparecer uma mensagem de
+    // erro na tela e não deve permitir o usuário acessar a aplicação.
+
+    @Test
+    void DeveImpedirDeAcessarAAplicacaoComCredenciaisErradas (){
+
+        wdNavegador.get(Constants.BASE_URL + "/login");
+        WebElement username = wdNavegador.findElement(By.id("username"));
+        username.click();
+        username.sendKeys("pernambuco" + UUID.randomUUID());
+        wdNavegador.findElement(By.id("password")).sendKeys("123456");
+        wdNavegador.findElement(By.cssSelector(".bg-red-600")).click();
+
+        // Espera os elementos aparecerem
+        WebDriverWait wait = new WebDriverWait(wdNavegador, Duration.ofSeconds(5));
+        List<WebElement> mensagens = wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".text-rose-500"))
+        );
+        // Texto que queremos encontrar
+        String textoEsperado = "Invalid username or password";
+        // Checa se algum elemento da lista tem o texto esperado
+        boolean encontrou = mensagens.stream()
+                .anyMatch(e -> e.getText().equals(textoEsperado));
+        assertTrue(encontrou, "A mensagem de login incorreto não apareceu corretamente!");
+    }
+
 
 
     @AfterAll

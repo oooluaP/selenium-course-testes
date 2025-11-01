@@ -1,4 +1,7 @@
-[REQUISITOS.md](https://github.com/user-attachments/files/23286864/REQUISITOS.md)
+Fui desafiado pelo professor Matheus Cruz a desenvolver testes para esta aplicação que cumprisse os requisítos abaixo.
+
+(Finalizado, todos os testes desenvolvidos)
+
 # Requisitos
 
 Aqui vivem todos os requisitos da aplicação Developers. A aplicação deve atender e seguir todos os requisitos definidos abaixo.

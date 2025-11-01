@@ -6,16 +6,16 @@ import javax.validation.constraints.Size;
 
 public class User {
 
-//    @Size(min = 2, message = "First name must be at least 2 characters long")
+    @Size(min = 2, message = "First name must be at least 2 characters long")
     private String firstName;
-//    @Size(min = 2, message = "Last name must be at least 2 characters long")
+    @Size(min = 2, message = "Last name must be at least 2 characters long")
     private String lastName;
-//    @Email(message = "Email should be valid")
+    @Email(message = "Email should be valid")
     private String email;
-//    @Size(min = 2, message = "Username must be at least 2 characters long")
+    @Size(min = 2, message = "Username must be at least 2 characters long")
     private String username;
-//    @Size(min = 8, message = "Password must be at least 6 characters long")
-//    @NotBlank
+    @Size(min = 6, message = "Password must be at least 6 characters long")
+    @NotBlank
     private String password;
 
     public User() {

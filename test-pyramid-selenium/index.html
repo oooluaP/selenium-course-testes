@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio de Einstein das Casas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+<div class="p-6 max-w-6xl mx-auto">
+    <h1 class="text-2xl font-bold mb-4">Desafio de Einstein das Casas</h1>
+    <p class="mb-4">Preencha os atributos das 5 casas e tente resolver o enigma. Use <strong>Checar Solução</strong> ou <strong>Resolver Automaticamente</strong>.</p>
+
+    <div id="houses" class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4"></div>
+
+    <div class="flex gap-2 mb-4">
+        <button id="checkBtn" class="px-4 py-2 rounded bg-blue-600 text-white">Checar Solução</button>
+        <button id="solveBtn" class="px-4 py-2 rounded bg-green-600 text-white">Resolver Automaticamente</button>
+        <button id="resetBtn" class="px-4 py-2 rounded bg-gray-600 text-white">Restaurar</button>
+        <button id="hintBtn" class="px-4 py-2 rounded bg-yellow-500 text-white">Dica</button>
+    </div>
+
+    <div id="message" class="mb-4 p-3 bg-gray-100 rounded"></div>
+
+    <div class="mt-6 text-sm text-gray-600">
+        <strong>Pistas</strong>
+        <ol class="list-decimal ml-6 mt-2">
+            <li>O britânico mora na casa vermelha.</li>
+            <li>O sueco tem cães.</li>
+            <li>O dinamarquês bebe chá.</li>
+            <li>A casa verde fica à esquerda da casa branca.</li>
+            <li>O dono da casa verde bebe café.</li>
+            <li>O que fuma Pall Mall cria pássaros.</li>
+            <li>A casa amarela fuma Dunhill.</li>
+            <li>O homem da casa do meio bebe leite.</li>
+            <li>O norueguês mora na primeira casa.</li>
+            <li>O que fuma Blend mora ao lado de quem tem gatos.</li>
+            <li>O homem que tem cavalos mora ao lado do que fuma Dunhill.</li>
+            <li>O que fuma BlueMaster bebe cerveja.</li>
+            <li>O alemão fuma Prince.</li>
+            <li>O norueguês mora ao lado da casa azul.</li>
+            <li>O que fuma Blend tem um vizinho que bebe água.</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+    const COLORS = ["red", "green", "white", "yellow", "blue"];
+    const NATIONALITIES = ["brit", "swede", "dane", "norwegian", "german"];
+    const DRINKS = ["tea", "coffee", "milk", "beer", "water"];
+    const SMOKES = ["pallmall", "dunhill", "blend", "bluemaster", "prince"];
+    const PETS = ["dog", "bird", "cat", "horse", "fish"];
+
+    const housesEl = document.getElementById('houses');
+    const messageEl = document.getElementById('message');
+
+    const houseData = Array.from({ length: 5 }, () => ({ color: '', nationality: '', drink: '', smoke: '', pet: '' }));
+
+    function createDropdown(options, onChange, value) {
+      const select = document.createElement('select');
+      select.className = 'w-full mt-1 p-1 border rounded';
+      const empty = document.createElement('option');
+      empty.value = ''; empty.textContent = '—';
+      select.appendChild(empty);
+      for (const opt of options) {
+        const o = document.createElement('option');
+        o.value = opt; o.textContent = opt;
+        if (opt === value) o.selected = true;
+        select.appendChild(o);
+      }
+      select.addEventListener('change', (e) => onChange(e.target.value));
+      return select;
+    }
+
+    function renderHouses() {
+      housesEl.innerHTML = '';
+      houseData.forEach((house, i) => {
+        const card = document.createElement('div');
+        card.className = 'border rounded-lg p-3 shadow-sm bg-white';
+
+        const title = document.createElement('h2');
+        title.className = 'font-semibold';
+        title.textContent = `Casa ${i + 1}`;
+        card.appendChild(title);
+
+        const fields = [
+          ['Cor', 'color', COLORS],
+          ['Nacionalidade', 'nationality', NATIONALITIES],
+          ['Bebida', 'drink', DRINKS],
+          ['Cigarro', 'smoke', SMOKES],
+          ['Animal', 'pet', PETS]
+        ];
+
+        fields.forEach(([label, key, opts]) => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'mt-2';
+          const lbl = document.createElement('label');
+          lbl.textContent = label;
+          lbl.className = 'text-sm';
+          wrapper.appendChild(lbl);
+          wrapper.appendChild(createDropdown(opts, (val) => {
+            houseData[i][key] = val;
+          }, house[key]));
+          card.appendChild(wrapper);
+        });
+
+        housesEl.appendChild(card);
+      });
+    }
+
+    function checkSolution() {
+      if (houseData.some(h => Object.values(h).includes(''))) {
+        messageEl.textContent = 'Preencha todos os campos antes de checar a solução.';
+        return;
+      }
+      messageEl.textContent = 'Solução verificada (validação completa pode ser adicionada).';
+    }
+
+    function reset() {
+      houseData.forEach(h => { for (let k in h) h[k] = ''; });
+      messageEl.textContent = '';
+      renderHouses();
+    }
+
+    function hint() {
+      messageEl.textContent = 'Dica: o norueguês mora na primeira casa e o homem do meio bebe leite.';
+    }
+
+    document.getElementById('checkBtn').addEventListener('click', checkSolution);
+    document.getElementById('resetBtn').addEventListener('click', reset);
+    document.getElementById('hintBtn').addEventListener('click', hint);
+
+    document.getElementById('solveBtn').addEventListener('click', () => {
+      messageEl.textContent = 'A solução completa pode ser exibida aqui futuramente (módulo de resolução).';
+    });
+
+    renderHouses();
+</script>
+</body>
+</html>

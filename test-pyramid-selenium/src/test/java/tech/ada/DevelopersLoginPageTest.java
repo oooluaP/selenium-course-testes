@@ -78,4 +78,6 @@ public class DevelopersLoginPageTest {
 
         Assertions.assertEquals(Constants.BASE_URL + "/register", currentUrl);
     }
+
+    
 }

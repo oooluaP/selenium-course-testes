@@ -11,35 +11,32 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class DevelopersLoginPageTestPaulinho {
 
     //WebDriver que será usado em todos os testes
-    static WebDriver navegador;
+    static WebDriver wdNavegador;
 
     //construtor da classe de teste, instancia o webdriver
     public DevelopersLoginPageTestPaulinho() {
-        navegador = new ChromeDriver();
+        wdNavegador = new ChromeDriver();
     }
 
     //Requisito 001 - O titulo deve ser Developers - Selenium Labs
     @Test
     void verificaSeAoEntrarNaAplicacaoOTituloCumpreRequisito() {
         String requisito = "Developers - Selenium Labs";
-        navegador.get(Constants.BASE_URL);
-        String titulodapagina = navegador.getTitle();
+        wdNavegador.get(Constants.BASE_URL);
+        String strTituloDaPagina = wdNavegador.getTitle();
 
-        Assertions.assertEquals(requisito, titulodapagina);
+        Assertions.assertEquals(requisito, strTituloDaPagina);
 
     }
 
-    //Ao entrar na página de login da aplicação /login, o
+    //Requisito 002 - Ao entrar na página de login da aplicação /login, o
     // usuário deve visualizar um link para cadastro contendo o
     // texto Register here.
     @Test
     void verificaSeAoEntrarNaAplicacaoOUsuarioVisualizaUmLInkParaCadastro() {
-        navegador.get(Constants.BASE_URL + "/login");
-
+        wdNavegador.get(Constants.BASE_URL + "/login");
         String textodolinkparacadastro = "Register here";
-
-        WebElement nododocumentohtml = navegador.findElement(By.linkText(textodolinkparacadastro));
-
+        WebElement nododocumentohtml = wdNavegador.findElement(By.linkText(textodolinkparacadastro));
         boolean estaVisivel = nododocumentohtml.isDisplayed();
 
         Assertions.assertTrue(estaVisivel);
@@ -53,18 +50,19 @@ public class DevelopersLoginPageTestPaulinho {
         String textoDoBotaoRegisterHere = "Register here";
         String tituloDaPaginaDeCadastro = "Developers - Register";
 
-        navegador.get(Constants.BASE_URL + "/login");
-        WebElement nodocumentohtml = navegador.findElement(By.linkText(textoDoBotaoRegisterHere));
+        wdNavegador.get(Constants.BASE_URL + "/login");
+        WebElement nodocumentohtml = wdNavegador.findElement(By.linkText(textoDoBotaoRegisterHere));
         nodocumentohtml.click();
-        String titulo = navegador.getTitle();
-        String enderecoAtual = navegador.getCurrentUrl();
+        String titulo = wdNavegador.getTitle();
+        String enderecoAtual = wdNavegador.getCurrentUrl();
 
         Assertions.assertEquals(tituloDaPaginaDeCadastro, titulo);
     }
 
+
     @AfterAll
     static void fechaTudo() {
-        navegador.quit();
+        wdNavegador.quit();
     }
 
 
